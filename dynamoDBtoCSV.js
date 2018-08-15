@@ -71,7 +71,14 @@ var scanDynamoDB = function ( query ) {
         scanDynamoDB(query);
       }
       else {
-        console.log(Papa.unparse( { fields: [ ...headers ], data: unMarshalledArray } ));
+        csv_config = {quotes: false,
+  quoteChar: '"',
+  escapeChar: '"',
+  delimiter: "\t",
+  header: true,
+  newline: "\r\n"
+        }
+        console.log(Papa.unparse( { fields: [ ...headers ], data: unMarshalledArray }, csv_config ));
       }
     }
     else {
